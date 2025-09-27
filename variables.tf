@@ -8,4 +8,5 @@ variable "aws_region" {
 variable "ami_id" {}
 
 # Network Module
-variable "az" {} # This is aws Availability Zone and not the region.
+variable "az1" {} # This is aws Availability Zone and not the region.
+variable "az2" {} # This is aws Availability Zone and not the region.

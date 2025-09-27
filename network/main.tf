@@ -5,12 +5,20 @@ resource "aws_vpc" "main" {
   tags = { Name = "3tier-vpc" }
 }
 
-resource "aws_subnet" "public" {
+resource "aws_subnet" "public1" {
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.public_subnet_cidr
-  availability_zone = var.az
+  availability_zone = var.az1
   map_public_ip_on_launch = true
-  tags = { Name = "public-subnet" }
+  tags = { Name = "public-subnet1" }
+}
+
+resource "aws_subnet" "public2" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = var.public_subnet_cidr
+  availability_zone = var.az2
+  map_public_ip_on_launch = true
+  tags = { Name = "public-subnet2" }
 }
 
 resource "aws_internet_gateway" "igw" {

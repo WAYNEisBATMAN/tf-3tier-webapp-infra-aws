@@ -11,7 +11,8 @@ ami_id = "ami-02d26659fd82cf299"
 
 # Network Module
 
-az                 = "ap-south-1a"
+az1 = "ap-south-1a"
+az2 = "ap-south-1b"
 
 
 
