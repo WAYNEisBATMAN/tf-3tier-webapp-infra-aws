@@ -13,35 +13,30 @@ terraform-aws/
 │   ├── main.tf              # VPC, subnets, security groups
 │   ├── variables.tf
 │   ├── outputs.tf
-│   ├── providers.tf
 │   └── terraform.tfvars
 │
 ├── compute/
 │   ├── main.tf              # EC2, ALB 
 │   ├── variables.tf
 │   ├── outputs.tf
-│   ├── providers.tf
 │   └── terraform.tfvars
 │
 ├── database/
 │   ├── main.tf              # RDS, DynamoDB
 │   ├── variables.tf
 │   ├── outputs.tf
-│   ├── providers.tf
 │   └── terraform.tfvars
 │
 ├── storage/
 │   ├── main.tf              # S3 buckets
 │   ├── variables.tf
 │   ├── outputs.tf
-│   ├── providers.tf
 │   └── terraform.tfvars
 │
 └── monitoring/
     ├── main.tf              # CloudWatch 
     ├── variables.tf
     ├── outputs.tf
-    ├── providers.tf
     └── terraform.tfvars
 
 
