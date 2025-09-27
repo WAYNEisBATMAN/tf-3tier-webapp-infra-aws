@@ -1,14 +1,16 @@
 resource "aws_instance" "web" {
   for_each = toset(var.subnet_ids)
 
-  ami                    = var.ami_id # Ubuntu AMI ID
-  instance_type          = "t2.micro"
-  subnet_id              = each.value        # pick one subnet for each instance
-  # subnet_id              = var.subnet_ids[0] # pick 
+  ami           = var.ami_id # Ubuntu AMI ID
+  instance_type = "t2.micro"
+  subnet_id     = var.subnet_ids[count.index % length(var.subnet_ids)] # distribute instances across subnets
+  # subnet_id              = var.subnet_ids[0] # Use this line to launch all instances in a specific subnet(first subnet here)
   vpc_security_group_ids = [var.sg_id]
 
+
   tags = {
-    Name = "web-server"
+    Name   = "web-server-${count.index + 1}"                        # Added +1 for human-friendly naming
+    Subnet = "subnet-${(count.index % length(var.subnet_ids)) + 1}" # Tracks which subnet the instance is in
   }
 }
 
