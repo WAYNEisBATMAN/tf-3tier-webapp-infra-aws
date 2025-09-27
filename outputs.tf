@@ -30,9 +30,7 @@ output "bucket_name" {
   value = module.storage.bucket_name
 }
 
-output "rds_endpoint" { value = aws_db_instance.rds.address }
-
-output "dynamodb_table" { value = module.storage.aws_dynamodb_table.sessions.name }
+output "dynamodb_table" { value = module.database.dynamodb_table }
 
 
 #---------------------------------------------------
@@ -60,7 +58,7 @@ output "cloudwatch_alarm" {
 #---------------------------------------------------
 
 output "vpc_id" {
-  value = module.network.aws_vpc.main.id
+  value = module.network.vpc_id
 
 }
 
@@ -68,16 +66,16 @@ output "availability_zones" {
   value = module.network.availability_zones
 }
 output "public_subnet_ids" {
-  value = module.network.aws_subnet.public[*].id
+  value = module.network.public_subnet_ids
 }
 
 output "web_sg_id" {
-  value = module.network.aws_security_group.web_sg.id
+  value = module.network.web_sg_id
 }
 
 output "internet_gateway_id" {
   description = "ID of the Internet Gateway"
-  value       = module.network.aws_internet_gateway.igw.id
+  value       = module.network.internet_gateway_id
 }
 
 

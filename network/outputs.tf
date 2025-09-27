@@ -10,4 +10,9 @@ output "public_subnet_ids" {
 
 output "web_sg_id" { value = aws_security_group.web_sg.id }
 
+output "internet_gateway_id" {
+  description = "ID of the Internet Gateway"
+  value       = aws_internet_gateway.igw.id
+}
+
 
