@@ -1,7 +1,7 @@
 resource "aws_instance" "web" {
   ami                    = var.ami_id # Ubuntu AMI ID
   instance_type          = "t2.micro"
-  subnet_id              = var.subnet_id
+  subnet_id              = each.value
   vpc_security_group_ids = [var.sg_id]
 
   user_data = <<-EOF
@@ -22,7 +22,7 @@ resource "aws_instance" "web" {
 resource "aws_lb" "app_lb" {
   name               = "app-lb"
   load_balancer_type = "application"
-  subnets            = [var.subnet_id]
+  subnets            = var.subnet_ids
   security_groups    = [var.sg_id]
 }
 
