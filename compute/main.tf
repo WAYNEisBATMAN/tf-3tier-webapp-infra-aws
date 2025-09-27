@@ -1,5 +1,5 @@
 resource "aws_instance" "web" {
-  for_each = toset(var.subnet_ids)
+  count = var.instance_count # Use count instead of for_each
 
   ami           = var.ami_id # Ubuntu AMI ID
   instance_type = "t2.micro"
