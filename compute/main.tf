@@ -1,17 +1,11 @@
 resource "aws_instance" "web" {
+  for_each = toset(var.subnet_ids)
+
   ami                    = var.ami_id # Ubuntu AMI ID
   instance_type          = "t2.micro"
-  subnet_id              = var.subnet_ids[0] # pick one subnet for EC2. use each.value for multiple instances
+  subnet_id              = each.value        # pick one subnet for each instance
+  # subnet_id              = var.subnet_ids[0] # pick 
   vpc_security_group_ids = [var.sg_id]
-
-  user_data = <<-EOF
-              #!/bin/bash
-              apt-get update -y
-              apt-get install -y nginx
-              systemctl start nginx
-              systemctl enable nginx
-              echo "Hello from Terraform Web Server on Ubuntu" > /var/www/html/index.html
-              EOF
 
   tags = {
     Name = "web-server"
