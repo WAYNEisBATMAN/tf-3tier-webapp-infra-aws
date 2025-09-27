@@ -1,7 +1,7 @@
 resource "aws_instance" "web" {
   ami                    = var.ami_id # Ubuntu AMI ID
   instance_type          = "t2.micro"
-  subnet_id              = each.value
+  subnet_id              = var.subnet_ids[0] # pick one subnet for EC2. use each.value for multiple instances
   vpc_security_group_ids = [var.sg_id]
 
   user_data = <<-EOF
