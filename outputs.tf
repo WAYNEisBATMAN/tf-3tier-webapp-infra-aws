@@ -12,8 +12,8 @@
 #   value = module.compute.ec2_public_ip
 # }
 
-output "instance_distribution" {
-  value = module.compute.instance_distribution
+output "instances_summary" {
+  value = module.compute.instances_summary
 }
 
 output "alb_dns" {

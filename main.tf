@@ -21,5 +21,5 @@ module "storage" {
 
 module "monitoring" {
   source = "./monitoring"
-  ec2_id = module.compute.ec2_id
+  ec2_id = module.compute.ec2_ids
 }

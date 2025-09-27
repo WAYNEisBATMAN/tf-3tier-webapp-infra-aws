@@ -4,7 +4,8 @@ resource "aws_cloudwatch_log_group" "app_logs" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_cpu" {
-  alarm_name          = "HighCPU"
+  count               = length(var.ec2_ids)
+  alarm_name          = "HighCPU-${var.ec2_ids[count.index]}"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = 2
   metric_name         = "CPUUtilization"
@@ -12,8 +13,14 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   period              = 120
   statistic           = "Average"
   threshold           = 70
-  alarm_description   = "This metric monitors EC2 CPU usage"
+  alarm_description   = "This metric monitors EC2 CPU usage for instance ${var.ec2_ids[count.index]}"
+
   dimensions = {
-    InstanceId = var.ec2_id
+    InstanceId = var.ec2_ids[count.index]
+  }
+
+  tags = {
+    Name       = "CPU-Alarm-${var.ec2_ids[count.index]}"
+    InstanceId = var.ec2_ids[count.index]
   }
 }
