@@ -6,7 +6,7 @@ This repository provides a complete Infrastructure as Code (IaC) solution for de
 
 ---
 
-## 🚀 What this repo provisions
+## 🚀 What this Repo Provisions
 - Network: VPC, public and private subnets (multi-AZ), Internet Gateway, NAT Gateway(s), route tables, and security groups.
 
 - Compute: EC2 instances for the web / app tier, an Application Load Balancer (ALB) for HTTP/HTTPS traffic, and autoscaling hooks (optional).
@@ -124,8 +124,7 @@ Your IAM user or role must have permissions for:
 
 👉 Important: For the AWS Credentials Use the default profile by:
 
-Not specifying profile in the Terraform provider block
-Not hardcoding access keys in Terraform code
+Not specifying profile in the Terraform provider block and not hardcoding access keys in Terraform code
 
 ---
 
