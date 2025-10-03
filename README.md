@@ -78,39 +78,43 @@ CloudWatch, IAM roles
 
 ## 🚀 Getting Started
 
-Step 1: **Clone the Repository**
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/WAYNEisBATMAN/tf-3tier-webapp-infra-aws.git
+   cd tf-3tier-webapp-infra-aws
+   ```
 
-git clone https://github.com/WAYNEisBATMAN/tf-3tier-webapp-infra-aws.git
-cd tf-3tier-webapp-infra-aws
-
-
-Step 2: Initialize Terraform
-
-terraform init
+2. **Initialize Terraform**
+   ```bash
+   terraform init
+   ```
 
 This command:
 Downloads required provider plugins (AWS)
 Initializes the backend for state storage
 Prepares modules for use
 
-Step 3: Validate Configuration
-terraform validate
+3. **Validate Configuration**
+   ```bash
+   terraform validate
+   ```
 
-Step 5: Preview Changes
-terraform plan
+4. **Preview Changes**
+   ```bash
+   terraform plan
+   ```
 
 Review the planned changes carefully. Terraform will show:
 Resources to be created
 Estimated costs (if cost estimation is enabled)
 Dependencies between resources
 
-Step 6: Deploy Infrastructure
+5. **Deploy Infrastructure**
 terraform apply
 
 Type yes when prompted to confirm deployment.
 
 Deployment Time: Approximately 10-15 minutes
-
 
 
 
