@@ -1,0 +1,37 @@
+#----------------------------------------------------------------------------
+# Root Module
+#----------------------------------------------------------------------------
+variable "aws_region" {
+  description = "AWS region to deploy resources"
+  type        = string
+  default     = "ap-south-1"
+}
+
+
+#----------------------------------------------------------------------------
+# Compute Module
+#----------------------------------------------------------------------------
+variable "ami_id" {}
+
+variable "instance_count" {
+  default = 2
+}
+
+#----------------------------------------------------------------------------
+# Network Module
+#----------------------------------------------------------------------------
+variable "vpc_cidr" { default = "10.0.0.0/16" }
+
+
+variable "availability_zones_count" {
+  description = "Number of availability zones to use"
+  type        = number
+  default     = 2
+}
+
+
+#----------------------------------------------------------------------------
+# Storage Module
+#----------------------------------------------------------------------------
+
+variable "bucket_name" { default = "my-terraform-app-bucket-12345" }

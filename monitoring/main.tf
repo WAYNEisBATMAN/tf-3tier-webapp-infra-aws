@@ -1,0 +1,26 @@
+resource "aws_cloudwatch_log_group" "app_logs" {
+  name              = "/aws/3tier/app"
+  retention_in_days = 7
+}
+
+resource "aws_cloudwatch_metric_alarm" "high_cpu" {
+  count               = length(var.ec2_ids)
+  alarm_name          = "HighCPU-${var.ec2_ids[count.index]}"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 2
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = 120
+  statistic           = "Average"
+  threshold           = 70
+  alarm_description   = "This metric monitors EC2 CPU usage for instance ${var.ec2_ids[count.index]}"
+
+  dimensions = {
+    InstanceId = var.ec2_ids[count.index]
+  }
+
+  tags = {
+    Name       = "CPU-Alarm-${var.ec2_ids[count.index]}"
+    InstanceId = var.ec2_ids[count.index]
+  }
+}
