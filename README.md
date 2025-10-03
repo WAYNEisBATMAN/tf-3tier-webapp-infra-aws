@@ -60,20 +60,33 @@ This setup implements a classic 3‑tier architecture (presentation via ALB + We
 
 
 ---
-## 🛠️ Prerequisites
+<!-- ## 🛠️ Prerequisites
 
 - [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.12  
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured 
-- Optionally configure a remote backend (S3 + DynamoDB) for state locking in backend.tf.
-- AWS credentials configured (we’ll use the **default profile** option with `~/.aws/credentials`)  
-- AWS Requirements
-- - An AWS account with the right permissions
-- - Access Keys (Access Key ID & Secret Access Key)
-- - IAM permissions for:
-  - VPC, EC2, RDS, S3, DynamoDB
-  - Load Balancers, Auto Scaling Groups
-  - CloudWatch, IAM Roles
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured  -->
+## 🛠️ Prerequisites
 
+### Required Software
+- **Terraform** >= 1.12 ([Download](https://developer.hashicorp.com/terraform/downloads))
+- **AWS CLI** installed and configured ([Installation Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html))
+
+### AWS Configuration
+- AWS credentials configured via `~/.aws/credentials` (using default profile)
+- Valid Access Key ID and Secret Access Key
+- AWS account with appropriate IAM permissions
+
+### Required AWS Permissions
+Your IAM user or role must have permissions for:
+- **Networking:** VPC, Subnets, Internet Gateway, NAT Gateway
+- **Compute:** EC2, Application Load Balancer, Auto Scaling Groups
+- **Database:** RDS, DynamoDB
+- **Storage:** S3
+- **Monitoring:** CloudWatch Logs, CloudWatch Alarms
+- **Security:** IAM Roles and Policies
+
+### Optional Configuration
+- Remote backend for state management (S3 bucket + DynamoDB table)
+- Configure in `backend.tf` for state locking and team collaboration
 
 ---
 ## 🔑 Setting up AWS Credentials
