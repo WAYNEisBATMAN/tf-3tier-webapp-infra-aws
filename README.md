@@ -1,8 +1,25 @@
+# ☁️ Terraform-AWS—3‑Tier Web App Infrastructure Project
 
-terraform-aws — 3‑Tier Web App Infrastructure
+## 📌 Overview
 
 This repository provides a complete Infrastructure as Code (IaC) solution for deploying a **3-tier web application** on AWS using Terraform. The modular architecture separates networking, compute, database, storage, and monitoring into independent, reusable components for enhanced maintainability and scalability.
 
+---
+
+## 🚀 What this repo provisions
+- Network: VPC, public and private subnets (multi-AZ), Internet Gateway, NAT Gateway(s), route tables, and security groups.
+
+- Compute: EC2 instances for the web / app tier, an Application Load Balancer (ALB) for HTTP/HTTPS traffic, and autoscaling hooks (optional).
+
+- Database: RDS (MySQL/Postgres) in private subnets with a DB subnet group and optional DynamoDB table for session or ephemeral data.
+
+- Storage: S3 buckets for assets, logs, and backups with appropriate lifecycle rules and encryption.
+
+- Monitoring: CloudWatch alarms, dashboards, and metrics for core resources.
+
+This setup implements a classic 3‑tier architecture (presentation via ALB + Web EC2, application tier on EC2, data tier on RDS/DynamoDB).
+
+---
 
 ## 📂 Project Structure
 
@@ -44,26 +61,6 @@ terraform-aws/
 
 
 ---
-## 🚀 What this repo provisions
-Network: VPC, public and private subnets (multi-AZ), Internet Gateway, NAT Gateway(s), route tables, and security groups.
-
-Compute: EC2 instances for the web / app tier, an Application Load Balancer (ALB) for HTTP/HTTPS traffic, and autoscaling hooks (optional).
-
-Database: RDS (MySQL/Postgres) in private subnets with a DB subnet group and optional DynamoDB table for session or ephemeral data.
-
-Storage: S3 buckets for assets, logs, and backups with appropriate lifecycle rules and encryption.
-
-Monitoring: CloudWatch alarms, dashboards, and metrics for core resources.
-
-This setup implements a classic 3‑tier architecture (presentation via ALB + Web EC2, application tier on EC2, data tier on RDS/DynamoDB).
-
-
-
----
-<!-- ## 🛠️ Prerequisites
-
-- [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.12  
-- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured  -->
 ## 🛠️ Prerequisites
 
 ### Required Software
@@ -128,16 +125,10 @@ Your IAM user or role must have permissions for:
 👉 Important: For the AWS Credentials Use the default profile by:
 
 Not specifying profile in the Terraform provider block
-
 Not hardcoding access keys in Terraform code
 
 ---
 
-
-
-
-
----
 ## 🚀 Getting Started
 
 1. **Clone the Repository**
