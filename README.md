@@ -43,6 +43,7 @@ terraform-aws/
 ```
 
 
+---
 ## 🚀 What this repo provisions
 Network: VPC, public and private subnets (multi-AZ), Internet Gateway, NAT Gateway(s), route tables, and security groups.
 
@@ -58,6 +59,7 @@ This setup implements a classic 3‑tier architecture (presentation via ALB + We
 
 
 
+---
 ## ✅ Prerequisites
 Terraform v1.4+ recommended
 
@@ -76,6 +78,7 @@ CloudWatch, IAM roles
 
 
 
+---
 ## 🚀 Getting Started
 
 1. **Clone the Repository**
@@ -110,12 +113,15 @@ Estimated costs (if cost estimation is enabled)
 Dependencies between resources
 
 5. **Deploy Infrastructure**
-terraform apply
+   ```bash
+   terraform apply
+   ```
 
 Type yes when prompted to confirm deployment.
 
 Deployment Time: Approximately 10-15 minutes
 
+---
 
 
 
