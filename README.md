@@ -60,21 +60,68 @@ This setup implements a classic 3‑tier architecture (presentation via ALB + We
 
 
 ---
-## ✅ Prerequisites
-Terraform v1.4+ recommended
+## 🛠️ Prerequisites
 
-Required Tools:
-Terraform >= 1.0.0 (Installation Guide)
-AWS CLI >= 2.0 (Installation Guide)
-Optionally configure a remote backend (S3 + DynamoDB) for state locking in backend.tf.
+- [Terraform](https://developer.hashicorp.com/terraform/downloads) >= 1.12  
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) installed and configured 
+- Optionally configure a remote backend (S3 + DynamoDB) for state locking in backend.tf.
+- AWS credentials configured (we’ll use the **default profile** option with `~/.aws/credentials`)  
+- AWS Requirements
+- - An AWS account with the right permissions
+- - Access Keys (Access Key ID & Secret Access Key)
 
-AWS Requirements:
-AWS Account with appropriate permissions
-AWS Access Keys (Access Key ID and Secret Access Key)
 IAM permissions for:
 VPC, EC2, RDS, S3, DynamoDB
 Load Balancers, Auto Scaling Groups
-CloudWatch, IAM roles
+CloudWatch, IAM Roles
+
+
+---
+## 🔑 Setting up AWS Credentials
+
+- Terraform checks for AWS credentials in this order:
+
+1) Environment variables (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_SESSION_TOKEN)
+
+2) AWS CLI credentials file (~/.aws/credentials)
+
+3) EC2 Instance Metadata Service (IMDS) (when running inside an EC2 instance with an attached IAM role)
+
+- We’ll use the 2nd method. To set it up:
+
+
+1. **Create a Group**  
+   - Go to [IAM → User groups](https://console.aws.amazon.com/iamv2/home#/groups)  
+   - Click **Create group**  
+   - Assign required policies (e.g., `AmazonEC2FullAccess`, `AmazonS3FullAccess`, `AmazonDynamoDBFullAccess`)  
+
+2. **Create a User**  
+   - Go to [IAM → Users](https://console.aws.amazon.com/iamv2/home#/users)  
+   - Click **Add user**  
+   - Enable **Programmatic access**  
+   - Add the user to the group created above  
+   - Save the **Access Key ID** and **Secret Access Key**  
+
+3. **Run AWS Configure**  
+   ```bash
+   aws configure
+   # Then it will prompt you to provide below details which you got in step 2:
+   Access Key ID
+   Secret Access Key
+   Default region (e.g., ap-south-1)
+   Output format (choose one of the options or enter to skip)   
+
+   ```
+
+👉 Important: For the AWS Credentials Use the default profile by:
+
+Not specifying profile in the Terraform provider block
+
+Not hardcoding access keys in Terraform code
+
+---
+
+
 
 
 
