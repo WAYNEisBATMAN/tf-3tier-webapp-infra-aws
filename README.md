@@ -69,11 +69,10 @@ This setup implements a classic 3‑tier architecture (presentation via ALB + We
 - AWS Requirements
 - - An AWS account with the right permissions
 - - Access Keys (Access Key ID & Secret Access Key)
-
-IAM permissions for:
-VPC, EC2, RDS, S3, DynamoDB
-Load Balancers, Auto Scaling Groups
-CloudWatch, IAM Roles
+- - IAM permissions for:
+  - VPC, EC2, RDS, S3, DynamoDB
+  - Load Balancers, Auto Scaling Groups
+  - CloudWatch, IAM Roles
 
 
 ---
