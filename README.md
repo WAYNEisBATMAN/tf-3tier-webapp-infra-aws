@@ -1,4 +1,9 @@
 
+terraform-aws — 3‑Tier Web App Infrastructure
+
+This repository provides a complete Infrastructure as Code (IaC) solution for deploying a **3-tier web application** on AWS using Terraform. The modular architecture separates networking, compute, database, storage, and monitoring into independent, reusable components for enhanced maintainability and scalability.
+
+
 ## 📂 Project Structure
 
 ```
@@ -36,3 +41,81 @@ terraform-aws/
 
 
 ```
+
+
+## 🚀 What this repo provisions
+Network: VPC, public and private subnets (multi-AZ), Internet Gateway, NAT Gateway(s), route tables, and security groups.
+
+Compute: EC2 instances for the web / app tier, an Application Load Balancer (ALB) for HTTP/HTTPS traffic, and autoscaling hooks (optional).
+
+Database: RDS (MySQL/Postgres) in private subnets with a DB subnet group and optional DynamoDB table for session or ephemeral data.
+
+Storage: S3 buckets for assets, logs, and backups with appropriate lifecycle rules and encryption.
+
+Monitoring: CloudWatch alarms, dashboards, and metrics for core resources.
+
+This setup implements a classic 3‑tier architecture (presentation via ALB + Web EC2, application tier on EC2, data tier on RDS/DynamoDB).
+
+
+
+## ✅ Prerequisites
+Terraform v1.4+ recommended
+
+Required Tools:
+Terraform >= 1.0.0 (Installation Guide)
+AWS CLI >= 2.0 (Installation Guide)
+Optionally configure a remote backend (S3 + DynamoDB) for state locking in backend.tf.
+
+AWS Requirements:
+AWS Account with appropriate permissions
+AWS Access Keys (Access Key ID and Secret Access Key)
+IAM permissions for:
+VPC, EC2, RDS, S3, DynamoDB
+Load Balancers, Auto Scaling Groups
+CloudWatch, IAM roles
+
+
+
+## 🚀 Getting Started
+
+Step 1: **Clone the Repository**
+
+git clone https://github.com/WAYNEisBATMAN/tf-3tier-webapp-infra-aws.git
+cd tf-3tier-webapp-infra-aws
+
+
+Step 2: Initialize Terraform
+
+terraform init
+
+This command:
+Downloads required provider plugins (AWS)
+Initializes the backend for state storage
+Prepares modules for use
+
+Step 3: Validate Configuration
+terraform validate
+
+Step 5: Preview Changes
+terraform plan
+
+Review the planned changes carefully. Terraform will show:
+Resources to be created
+Estimated costs (if cost estimation is enabled)
+Dependencies between resources
+
+Step 6: Deploy Infrastructure
+terraform apply
+
+Type yes when prompted to confirm deployment.
+
+Deployment Time: Approximately 10-15 minutes
+
+
+
+
+
+## ♻️ Cleanup
+terraform destroy from the root will attempt to delete all resources the modules created.
+
+If state mismatches occur, consider terraform state rm for orphaned items before destroying.
